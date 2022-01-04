@@ -104,8 +104,10 @@ bash Part2.sh
 ## Approach 3
 Each step (except step 1) can be run separately from the command line by passing the required arguments:
 
-###### Step 1 - Deconvolve stains, open ImageJ macro IDE and click run
+###### Step 1 - Deconvolve stains by opening the following script on ImageJ macro IDE and click run
+```
 1_Deconvolution.ijm
+```
 
 ###### Step 2 - Reorganise files and segment
 
