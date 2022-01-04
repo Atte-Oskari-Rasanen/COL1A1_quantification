@@ -19,7 +19,7 @@ Subsystem for Linux (WSL) can be used although this has not been explicitly test
 For installing the Python packages, conda is recommended since a yml file has been readily made from which the user can install the correct package versions using the command:
 
 '''
-conda env create -f new_tf.yml
+conda env create -f conda_env_file.yml
 '''
 
 
