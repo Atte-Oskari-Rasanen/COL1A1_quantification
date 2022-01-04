@@ -85,8 +85,7 @@ An example output when the script is run and example input:
 3. Model path:
 ./saved_models/trad_unet_256_64.h5  
 
-##################
-#Approach 2
+##Approach 2
 After running 1_Deconvolution.ijm, the user can run the following scripts in the following order
 
 #After deconvolution:
@@ -99,8 +98,7 @@ Open 4_Remove_particles_WS.ijm on ImageJ IDE and run the script by clicking 'Run
 bash Part2.sh
 
 
-##################
-#Approach 3
+##Approach 3
 Each step (except step 1) can be run separately from the command line by passing the required arguments:
 
 #Step 1 - Deconvolve stains, open ImageJ macro IDE and click run
