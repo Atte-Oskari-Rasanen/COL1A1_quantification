@@ -18,10 +18,9 @@ Subsystem for Linux (WSL) can be used although this has not been explicitly test
 
 For installing the Python packages, conda is recommended since a yml file has been readily made from which the user can install the correct package versions using the command:
 
-'''
+```
 conda env create -f conda_env_file.yml
-'''
-
+```
 
 
 ## Repository overview
@@ -72,9 +71,9 @@ With 1_Deconvolution.ijm, the macro asks for the user to enter the input directo
 C corresponds Hematoxylin and eosin stain deconvolution. The macro will automatically generate the COL1A1 channel image and HuNu channel images into the directory where the images were originally saved.
 After this, the workflow can be run as usual using the command:
 
-'''
+```
 bash ImageQuantification
-'''
+```
 
 When the script is run on the terminal, the script asks for the path to the original_images folder, patch size along with the path to the model that will be used for segmenting the images.
 An example output when the script is run and example input:
@@ -89,14 +88,16 @@ An example output when the script is run and example input:
 After running 1_Deconvolution.ijm, the user can run the following scripts in the following order
 
 #After deconvolution:
+```
 bash Part1.sh
-
+```
 #Watershed and removal of small particles
 Open 4_Remove_particles_WS.ijm on ImageJ IDE and run the script by clicking 'Run'. The script requires you to specify the input directory.
 
 #After watershedding:
+```
 bash Part2.sh
-
+```
 
 ##Approach 3
 Each step (except step 1) can be run separately from the command line by passing the required arguments:
@@ -106,20 +107,29 @@ Each step (except step 1) can be run separately from the command line by passing
 
 #Step 2 - Reorganise files and segment
 
+```
 python ./Python_scripts/2_File_organise_segment.py Input Patch_size Model_path
+```
 
 #Step 3 - Postprocess the segmented images
+```
 python ./Python_scripts/3_Stain_channels_postprocess.py Deconvolved_ims
+```
 
 #Step 4 - Apply watershed to the thresholded images
+```
 ./Fiji.app/ImageJ-linux64 --ij2 --headless --console --run ./Fiji.app/macros/4_Remove_particles_WS.ijm
+```
 
 #Step 5 - Colocalise the COL1A1 channel image with HuNu channel image, producing an image with COL1A1+ cells
+```
 python ./Python_scripts/5_Colocalise_stains.py Deconv_dir
+```
 
 #Step 6 - Calculate the relevant statistics
+```
 python ./Python_scripts/6_Stats_calculation.py Deconv_dir
-
+```
 
 
 ## Data preparation
@@ -129,7 +139,9 @@ takes in the kaggle data as numpy arrays (available in github page:) as well as 
 
 
 #For augmenting data:
+```
 python albument_augmentation.py images_path masks_path img_augmented_path msk_augmented_path
+```
 
 ## Model training
 Models_unet_import.py contains the different U-nets that can be imported into the main file. trad_Unet.py file was used for training
@@ -137,8 +149,8 @@ the traditional U-net originally. However, the U-net can also be imported from M
 
 #singularity file
 
-Definition file contens:
-'''
+Definition file contents:
+```
 Bootstrap: library
 From: ubuntu:20.04
 
@@ -160,12 +172,14 @@ From: ubuntu:20.04
     rm -rf /var/lib/apt/lists/*
     # Install Python modules.
     pip3 install -I joblib wheel scipy==1.4.1 tensorflow==2.6.0 pip install keras==2.6.* focal-loss scikit-learn==0.22.1 numpy opencv-python pandas matplotlib tqdm scandir scikit-image PyOpenGL thinc
-'''
+```
 To create the singularity image, use
+```
 singularity build --remote ML_conda.sif ML_conda.def
+```
 
 The models were trained within singularity container. An example script is shown below:
-'''
+```
 #!/usr/bin/env bash
 #SBATCH -A SNIC2021-7-87 -p alvis
 #SBATCH --gpus-per-node=V100:2 #-C 2xV100 # (only 2 V100 on these nodes, thus twice the RAM per gpu)
@@ -188,7 +202,7 @@ unzip ./All_data/Train_by_batches_all.zip -d $TMPDIR/All_data
 singularity exec ML_conda.sif python3 ./scripts/tradUnet.py 256 64 $TMPDIR/All_data/Train_by_batches/Images/ $TMPDIR/All_data/Masks_by_batches/Masks/ ALL $TMPDIR/All_data/Test_set/Images/ $TMPDIR/All_data/Test_set/Masks/ > ./job_logs/AAA_tradU_U2_s256_bs32_ep8Max_1e5_faster_dr01.log
 singularity exec ML_conda.sif python3 ./scripts/tradUnet.py 512 64 $TMPDIR/All_data/Train_by_batches/Images/ $TMPDIR/All_data/Masks_by_batches/Masks/ ALL $TMPDIR/All_data/Test_set/Images/ $TMPDIR/All_data/Test_set/Masks/ >./job_logs/AAA_tradU_U2_s512_bs32_ep8Max_1e5_faster_dr01.log
 singularity exec ML_conda.sif python3 ./scripts/tradUnet.py 736 64 $TMPDIR/All_data/Train_by_batches/Images/ $TMPDIR/All_data/Masks_by_batches/Masks/ ALL $TMPDIR/All_data/Test_set/Images/ $TMPDIR/All_data/Test_set/Masks/ > ./job_logs/AAA_ALL_tradU_s736_bs32_ep8Max_1e5_faster_dr01.log
-'''
+```
 
 
 #Plotting data and performing linear regression
