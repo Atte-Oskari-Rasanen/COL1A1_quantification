@@ -8,7 +8,7 @@ setBatchMode(true);
 // the path to the Deconvolved_ims. If the latter is chosen then the 
 // scripts can be run via the command line (refer to the readme.md for further details)
 
-input = "/home/atte/Documents/analysis_folder/Fiji.app/original_images/Deconvolved_ims";
+input = "path to Deconvolved_ims directory here";
 //#@ File (label = "Input directory", style = "directory") input
 
 
