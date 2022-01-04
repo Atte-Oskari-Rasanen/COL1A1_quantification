@@ -213,6 +213,6 @@ singularity exec ML_conda.sif python3 ./scripts/tradUnet.py 736 64 $TMPDIR/All_d
 plot_history.py file contains steps used for performing linear regression analysis and calculating the relevant statistics and the stages used for plotting the metrics.
 
 
-#Statistics for the results
+## Statistics for the results
 pretests_groups.R was used for running the tests for normality and homoscedasticity for the data prior to choosing the significance test. Subsequently t_tests.R script contains the code for running t tests on samples or the non parametric alternative Wilcoxon test.
 Histograms of interest can also be plotted by entering the data of interest. Violinplots.R script contains the code used for generating the violin plots for the data. The data plotted on the script serves as an example and can be changed based on which data is plotted.
