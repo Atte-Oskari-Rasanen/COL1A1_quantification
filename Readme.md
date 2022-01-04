@@ -50,6 +50,9 @@ Provide an overview of the directory structure and files, for example:
 
 Example data is included inside Fiji.app directory (original_images).
 
+The workflow consists of python scripts (.ijm) found inside Python_scripts folder and java (.ijm)
+scripts found inside Fiji.app macros subfolder.
+
 The workflow can be run as a whole with two initial adjustments; 1. The first script, 1_Deconvolution.ijm,
 needs to be run separately by opening the ImageJ macro IDE ((ImageJ --> Quick search -> Macro)
 and 2. The user needs to open 4_Remove_particles_WS.ijm and add the input directory to the 'input' variable manually (the full path to the Deconvolved_ims folder). Alternatively to the step 2 the user can open the  4_Remove_particles_WS.ijm on ImageJ macro IDE and enter the directory via GUI when the user has commented out 'input' and removed the '//' from the front of the line starting #@.
