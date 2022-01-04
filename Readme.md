@@ -66,7 +66,7 @@ a matching, unique IDs which are used later for colocalisation. After the ID des
 directory is created inside original_images along with subfolders corresponding to the animal numbers.
 Inside these folders COL1A1 subfolder and HuNu subfolder are created. The corresponding images from the original folders are transferred here.
 
-# Approach 1
+## Approach 1
 With 1_Deconvolution.ijm, the macro asks for the user to enter the input directory, which is recommended to be the directory called original_images inside Fiji.app folder as well as deconvolution option (A,B,C). A corresponds to the optimised deconvolution, B corresponds to the Hematoxylin-DAB deconvolution and
 C corresponds Hematoxylin and eosin stain deconvolution. The macro will automatically generate the COL1A1 channel image and HuNu channel images into the directory where the images were originally saved.
 After this, the workflow can be run as usual using the command:
@@ -77,56 +77,58 @@ bash ImageQuantification
 
 When the script is run on the terminal, the script asks for the path to the original_images folder, patch size along with the path to the model that will be used for segmenting the images.
 An example output when the script is run and example input:
+```
 1. Input directory:
 ./Fiji.app/original_images
 2. Patch size:
 256
 3. Model path:
 ./saved_models/trad_unet_256_64.h5  
+```
 
-# Approach 2
+## Approach 2
 After running 1_Deconvolution.ijm, the user can run the following scripts in the following order
 
-# After deconvolution:
+###### After deconvolution:
 ```
 bash Part1.sh
 ```
-#Watershed and removal of small particles
+###### Watershed and removal of small particles:
 Open 4_Remove_particles_WS.ijm on ImageJ IDE and run the script by clicking 'Run'. The script requires you to specify the input directory.
 
-#After watershedding:
+###### After watershedding:
 ```
 bash Part2.sh
 ```
 
-# Approach 3
+## Approach 3
 Each step (except step 1) can be run separately from the command line by passing the required arguments:
 
-#Step 1 - Deconvolve stains, open ImageJ macro IDE and click run
+###### Step 1 - Deconvolve stains, open ImageJ macro IDE and click run
 1_Deconvolution.ijm
 
-#Step 2 - Reorganise files and segment
+###### Step 2 - Reorganise files and segment
 
 ```
 python ./Python_scripts/2_File_organise_segment.py Input Patch_size Model_path
 ```
 
-#Step 3 - Postprocess the segmented images
+###### Step 3 - Postprocess the segmented images
 ```
 python ./Python_scripts/3_Stain_channels_postprocess.py Deconvolved_ims
 ```
 
-#Step 4 - Apply watershed to the thresholded images
+###### Step 4 - Apply watershed to the thresholded images
 ```
 ./Fiji.app/ImageJ-linux64 --ij2 --headless --console --run ./Fiji.app/macros/4_Remove_particles_WS.ijm
 ```
 
-#Step 5 - Colocalise the COL1A1 channel image with HuNu channel image, producing an image with COL1A1+ cells
+###### Step 5 - Colocalise the COL1A1 channel image with HuNu channel image, producing an image with COL1A1+ cells
 ```
 python ./Python_scripts/5_Colocalise_stains.py Deconv_dir
 ```
 
-#Step 6 - Calculate the relevant statistics
+###### Step 6 - Calculate the relevant statistics
 ```
 python ./Python_scripts/6_Stats_calculation.py Deconv_dir
 ```
@@ -138,7 +140,7 @@ different formatting, it can be imported with its own function  or the data can 
 takes in the kaggle data as numpy arrays (available in github page:) as well as the output directory for images and corresponding masks.
 
 
-# For augmenting data:
+## For augmenting data:
 ```
 python albument_augmentation.py images_path masks_path img_augmented_path msk_augmented_path
 ```
@@ -205,7 +207,7 @@ singularity exec ML_conda.sif python3 ./scripts/tradUnet.py 736 64 $TMPDIR/All_d
 ```
 
 
-# Plotting data and performing linear regression
+## Plotting data and performing linear regression
 plot_history.py file contains steps used for performing linear regression analysis and calculating the relevant statistics and the stages used for plotting the metrics.
 
 
