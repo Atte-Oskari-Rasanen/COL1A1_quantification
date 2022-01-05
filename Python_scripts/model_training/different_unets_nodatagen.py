@@ -118,6 +118,9 @@ import random
 X_train = import_images(TRAIN_PATH, IMG_HEIGHT,IMG_WIDTH, 3)
 Y_train = import_masks(MASK_PATH, IMG_HEIGHT,IMG_WIDTH)
 
+#or if using the folder structure used by kaggle's datascience bowl 2018 competition:
+#X_train, Y_train = import_kaggledata(TRAIN_PATH, IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS)
+
 #normalise
 
 X_train = X_train/255.
