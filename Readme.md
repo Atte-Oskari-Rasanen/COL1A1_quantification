@@ -47,7 +47,7 @@ Provide an overview of the directory structure and files, for example:
 
 ## The Workflow
 
-Example data is included inside Fiji.app directory (original_images).
+Example data is included inside Fiji.app - original_images directory.
 
 The workflow consists of python scripts (.ijm) found inside Python_scripts folder and java (.ijm)
 scripts found inside Fiji.app macros subfolder.
