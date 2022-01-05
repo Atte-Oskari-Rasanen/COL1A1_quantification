@@ -12,9 +12,7 @@ https://arxiv.org/pdf/1804.03999.pdf
 Recurrent residual Unet (R2U-Net) paper
 https://arxiv.org/ftp/arxiv/papers/1802/1802.06955.pdf
 (Check fig 4.)
-Note: Batch normalization should be performed over channels after a convolution, 
-In the following code axis is set to 3 as our inputs are of shape 
-[None, height, width, channel]. Channel is axis=3.
+
 Original code from below link but heavily modified.
 https://github.com/MoleImg/Attention_UNet/blob/master/AttResUNet.py
 
