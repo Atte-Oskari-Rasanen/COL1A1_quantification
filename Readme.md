@@ -59,20 +59,21 @@ The workflow consists of python scripts (.py) found inside Python_scripts folder
 scripts found inside Fiji.app macros subfolder.
 
 The workflow can be run as a whole with two initial adjustments; 1. The first script, 1_Deconvolution.ijm,
-needs to be run separately by opening the ImageJ macro IDE ((ImageJ --> Quick search -> Macro)
-and 2. The user needs to open 4_Remove_particles_WS.ijm and add the input directory to the 'input' variable manually (the full path to the Deconvolved_ims folder). Alternatively to the step 2 the user can open the  4_Remove_particles_WS.ijm on ImageJ macro IDE and enter the directory via GUI when the user has commented out 'input' and removed the '//' from the front of the line starting #@.
+needs to be run separately by opening the ImageJ macro IDE (ImageJ --> Quick search -> Macro)
+and 2. The user needs to open 4_Remove_particles_WS.ijm and add the input directory to the 'input' variable manually (the full path to the Deconvolved_ims folder). Furthermore, the user needs to specify the ImageJ version if the user is not using Linux OS (currently /Fiji.app/ImageJ-linux64). Alternatively to the step 2 the user can open the  4_Remove_particles_WS.ijm on ImageJ macro IDE and enter the directory via GUI when the user has commented out 'input' and removed the '//' from the front of the line starting #@.
 
-The reason for having to pass the arguments into the ImageJ macros by opening the scripts is due to the fact that ImageJ is not generally speaking created for running via terminal. Some processes had been deprecated with the latest version, potentially affecting the way macros are run via terminal. However, earlier versions did not contain the deconvolution algorithm needed for the analysis. Thus, the compromise was made where the user needs to manually run the above mentioned processes.
+The reason for having to pass the arguments into the ImageJ macros by opening the scripts is due to the fact that ImageJ is not generally speaking created for running via terminal. Some processes had been deprecated with the latest version, potentially affecting the way macros are run via terminal. However, earlier versions did not contain the deconvolution algorithm needed for the analysis. Thus, the compromise was made where some manual handling is required from the user.
 
 Inside the original_images directory each animal is inside their own subfolders designated by number.
 When 2_File_organise_segment.py is run, each HuNu channel and COL1A1 channel image is designated
 a matching, unique IDs which are used later for colocalisation. After the ID designation, Deconvolved_ims
 directory is created inside original_images along with subfolders corresponding to the animal numbers.
-Inside these folders COL1A1 subfolder and HuNu subfolder are created. The corresponding images from the original folders are transferred here.
+Inside these folders COL1A1 subfolder and HuNu subfolder are created. The corresponding images from the original folders are transferred here. HuNu channel images are subsequently segmented, thresholded and watershedded and the COL1A1 channel images
+are thresholded.
 
 In case the user wants to use the trained Residual or Attention-Residual U-net model in the workflow,
 they can be downloaded from: https://www.dropbox.com/sh/j462f1szxd7xnza/AABhETE-6CUskf9olUOVjZqpa?dl=0. The rest of the
-models are found inside ./Quantification_COL1A1/saved_models. The former models could not be saved to Github due to their size. trad_unet_256_64.h5 model is the most optimised one out of the models is thus the recommended one. The model is not
+models are found inside ./Quantification_COL1A1/saved_models. The former models could not be saved to Github due to their size. trad_unet_256_64.h5 model is the most optimised one out of the models and is thus the recommended one. The model is not
 as efficient at identifying smaller or clumped nuclei as the trad_unet_own_data_256_32.h5. However, this one has the issue
 of capturing more background noise, which may not always be removed after postprocessing steps.
 
