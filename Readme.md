@@ -159,8 +159,7 @@ python albument_augmentation.py images_path masks_path img_augmented_path msk_au
 Models_unet_import.py contains the different U-nets that can be imported into the main file. trad_Unet.py file was used for training the traditional U-net originally. However, the U-net can also be imported from Models_unet_import.py like the residual and attention-residual ones. The files are imported into the main script (trad_Unet.py or Models_unet_import.py)
 by using import_images_masks_patches.py script. The function import_images imports images from the target directory when
 all images are found inside it and import_masks imports the masks from corresponding mask folder. However, if the user 
-decides to use the file structure found with Kaggle Datascience Bowl (DSB) 2018 data, then the user can use import_kaggledata function. All of these functions are found in import_images_masks_patches.py. In case one wants to put the DSB data into
-the format of training folder containing all images and mask folder for all masks, then the user can use kaggle_reformat.py. The script requires to import the DSB data as npy, either via using the . This can be done via import_images_masks_patches.py and afterwards save the imported numpy arrays as .npy file. In case the user wants to reformat the DSB data, this data can then be imported into kaggle_reformat.py which organised the images into allocated training and mask directories. 
+decides to use the folder structure found with Kaggle Datascience Bowl (DSB) 2018 data, then the user can use import_kaggledata function. All of these functions are found in import_images_masks_patches.py. In case one wants to put the DSB data into the format of training folder containing all images and mask folder for all masks, then the user can use kaggle_reformat.py. The script requires to import the DSB data as npy, either via using the . This can be done via import_images_masks_patches.py and afterwards save the imported numpy arrays as .npy file. In case the user wants to reformat the DSB data, this data can then be imported into kaggle_reformat.py which organised the images into allocated training and mask directories. 
 
 #singularity file
 
@@ -193,7 +192,7 @@ To create the singularity image from the definition file (./Quantification_COL1A
 singularity build --remote ML_conda.sif ML_train.def
 ```
 
-The models were trained within singularity container. An example script is shown below:
+The models were trained within singularity container. An example script template is shown below:
 ```
 #!/usr/bin/env bash
 #SBATCH -A SNIC2021-7-87 -p alvis
