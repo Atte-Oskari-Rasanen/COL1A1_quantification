@@ -225,7 +225,7 @@ singularity exec ML_conda.sif python3 ./scripts/tradUnet.py 736 64 $TMPDIR/All_d
 
 
 ## Plotting data and performing linear regression
-plot_history.py file contains steps used for performing linear regression analysis and calculating the relevant statistics and the stages used for plotting the training metrics for each epoch. The user can make the appropriate changes based on the data.
+plot_history.py file contains steps used for performing linear regression analysis and calculating the relevant statistics and the stages used for plotting the training metrics for each epoch. The script also contains the generation of the heatmaps for the metrics tables. The user can make the appropriate changes based on the data.
 
 
 ## Statistics for the results

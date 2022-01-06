@@ -1,0 +1,4 @@
+Model,dice_coef,jacard_coef,auc_1,val_dice_coef,val_jacard_coef,val_auc_1
+U-net,0.929,0.416,0.88,0.926,0.384,0.867
+Residual U-net,0.982,0.815,0.815,0.967,0.707,0.9358
+Attention-Residual U-net,0.928,0.454,0.454,0.916,0.437,0.9689

@@ -358,6 +358,32 @@ df1 = df.tail(1)
 print(df1)
 df.to_csv(file_save, sep='\t', encoding='utf-8',index=False)
 
+#heatmpats generation
+from pandas.table.plotting import table
+from pandas.plotting import table 
+import subprocess
+import sys
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+install('dataframe-image')
+import dataframe_image as dfi
+
+csv_df_path = "/home/atte/Documents/GitHub/Quantification_COL1A1/Python_scripts/analysis_scripts/metrics_data/Unet_comparisons.csv"
+csv_df_path = "/home/atte/Documents/GitHub/Quantification_COL1A1/Python_scripts/analysis_scripts/metrics_data/Unets_own_data.csv"
+csv_df_path = "/home/atte/Documents/GitHub/Quantification_COL1A1/Python_scripts/analysis_scripts/metrics_data/Unets_all_data.csv"
 
 
-st.stats.shapiro(x)
+df = pd.read_csv(csv_df_path)
+df.fillna(value='', inplace = True)
+
+
+df.columns.str.match("Unnamed")
+df.loc[:,~df.columns.str.match("Unnamed")]
+
+csv_df_path_save = "/home/atte/Documents/GitHub/Quantification_COL1A1/Python_scripts/analysis_scripts/metrics_data"
+
+
+df_styled = df.style.background_gradient() #adding a gradient based on values in cell
+dfi.export(df_styled,csv_df_path_save + '/Unets_data_all_heatmap.png')
+
