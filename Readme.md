@@ -81,7 +81,7 @@ of capturing more background noise, which may not always be removed after postpr
 With 1_Deconvolution.ijm, the macro asks for the user to enter the input directory, which is recommended to be the directory called original_images inside Fiji.app folder as well as deconvolution option (A,B,C). A corresponds to the optimised deconvolution, B corresponds to the Hematoxylin-DAB deconvolution and C corresponds Hematoxylin and eosin stain deconvolution. The macro will automatically generate the COL1A1 channel image and HuNu channel images into the directory where the images were originally saved. After this, the workflow can be run as usual using the command:
 
 ```
-bash ImageQuantification
+bash ImageQuantification.sh
 ```
 
 Note that if you are not using Linux, you should change the step 4's ImageJ app to the one specific for your OS. Currently
