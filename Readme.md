@@ -62,9 +62,7 @@ The workflow can be run as a whole with two initial adjustments; 1. The first sc
 needs to be run separately by opening the ImageJ macro IDE ((ImageJ --> Quick search -> Macro)
 and 2. The user needs to open 4_Remove_particles_WS.ijm and add the input directory to the 'input' variable manually (the full path to the Deconvolved_ims folder). Alternatively to the step 2 the user can open the  4_Remove_particles_WS.ijm on ImageJ macro IDE and enter the directory via GUI when the user has commented out 'input' and removed the '//' from the front of the line starting #@.
 
-The reason for having to pass the arguments into the ImageJ macros by opening the scripts is due to the fact that ImageJ is not generally speaking created for running via terminal. Some processes had been deprecated with the latest version, potentially affecting the way macros are run via terminal. However,
-earlier versions did not contain the deconvolution algorithm needed for the analysis. Thus, the compromise
-was made where the user needs to manually run the above mentioned processes.
+The reason for having to pass the arguments into the ImageJ macros by opening the scripts is due to the fact that ImageJ is not generally speaking created for running via terminal. Some processes had been deprecated with the latest version, potentially affecting the way macros are run via terminal. However, earlier versions did not contain the deconvolution algorithm needed for the analysis. Thus, the compromise was made where the user needs to manually run the above mentioned processes.
 
 Inside the original_images directory each animal is inside their own subfolders designated by number.
 When 2_File_organise_segment.py is run, each HuNu channel and COL1A1 channel image is designated
@@ -74,7 +72,9 @@ Inside these folders COL1A1 subfolder and HuNu subfolder are created. The corres
 
 In case the user wants to use the trained Residual or Attention-Residual U-net model in the workflow,
 they can be downloaded from: https://www.dropbox.com/sh/j462f1szxd7xnza/AABhETE-6CUskf9olUOVjZqpa?dl=0. The rest of the
-models are found inside ./Quantification_COL1A1/saved_models. The former models could not be saved to Github due to their size. trad_unet_256_64.h5 model is the most optimised one out of the models is thus the recommended one.
+models are found inside ./Quantification_COL1A1/saved_models. The former models could not be saved to Github due to their size. trad_unet_256_64.h5 model is the most optimised one out of the models is thus the recommended one. The model is not
+as efficient at identifying smaller or clumped nuclei as the trad_unet_own_data_256_32.h5. However, this one has the issue
+of capturing more background noise, which may not always be removed after postprocessing steps.
 
 ## Approach 1
 With 1_Deconvolution.ijm, the macro asks for the user to enter the input directory, which is recommended to be the directory called original_images inside Fiji.app folder as well as deconvolution option (A,B,C). A corresponds to the optimised deconvolution, B corresponds to the Hematoxylin-DAB deconvolution and C corresponds Hematoxylin and eosin stain deconvolution. The macro will automatically generate the COL1A1 channel image and HuNu channel images into the directory where the images were originally saved. After this, the workflow can be run as usual using the command:
