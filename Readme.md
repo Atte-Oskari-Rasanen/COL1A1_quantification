@@ -3,7 +3,7 @@
 Link to the Github page: https://github.com/Atte-Oskari-Rasanen/COL1A1_quantification 
 ## Motivation
 
-An analysis workflow was built to quantify the number of COL1A1+ cells in IHC images. More specifically, the workflow has been finetuned to work with DAB-COL1A1/VectorBlue-HuNu IHC images although it can work with other stains as well. The images should be of relatively clean quality in order for the segmentation to work although basic image cleaning is also performed by the workflow.
+An analysis workflow was built to quantify the number of COL1A1+ cells in IHC images. More specifically, the workflow has been finetuned to work with COL1A1-VectorBlue/HuNu-DAB IHC images although it can work with other stains as well. The images should be of relatively clean quality in order for the segmentation to work although basic image cleaning is also performed by the workflow.
 
 
 ## Requirements
