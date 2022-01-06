@@ -134,8 +134,8 @@ python ./Python_scripts/2_File_organise_segment.py Input Patch_size Model_path
 python ./Python_scripts/3_Stain_channels_postprocess.py Deconvolved_ims
 ```
 
-###### Step 4 - Apply watershed to the thresholded images. Change the ImageJ-linux64 to the OS being used in case
-it is not Linux.
+###### Step 4 - Apply watershed to the thresholded images
+Change the ImageJ-linux64 to the OS being used in case it is not Linux.
 ```
 ./Fiji.app/ImageJ-linux64 --ij2 --headless --console --run ./Fiji.app/macros/4_Remove_particles_WS.ijm
 ```
