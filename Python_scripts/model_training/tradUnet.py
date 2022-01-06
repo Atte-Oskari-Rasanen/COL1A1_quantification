@@ -135,7 +135,11 @@ print('X_train imported!')
 
 Y_train = import_masks(MASK_PATH, IMG_HEIGHT,IMG_WIDTH)
 print('All imported!')
-#Normalize images
+
+
+
+#or the user can use the following function in case the data is kaggle DSB2018 folder format:
+#X_train, Y_train = import_kaggledata(TRAIN_PATH, IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS)
 
 # batch_size=128
 all_train_imgs = len(os.listdir(TRAIN_PATH))
@@ -148,7 +152,7 @@ all_train_imgs = len(os.listdir(TRAIN_PATH))
 steps_per_epoch = len(X_train)//batch_size
 # validation_steps = (len(X_train)*0.3)//batch_size # if you have test data
 
-
+#normalise
 X_train = X_train / 255.
 Y_train = Y_train / 255.
 

@@ -54,8 +54,8 @@ def colocalise(hunu_im, col1a1_im):
     return(out)
     print('colocalised image created!')
 
-#main_dir = sys.argv[1]
-main_dir = "/home/atte/Documents/GitHub/analysis_folder/Fiji.app/original_images/Deconvolved_ims"
+main_dir = sys.argv[1]
+# main_dir = "/home/atte/Documents/GitHub/analysis_folder/Fiji.app/original_images/Deconvolved_ims"
 coloc_dir = main_dir + '/Coloc'
 
 try:

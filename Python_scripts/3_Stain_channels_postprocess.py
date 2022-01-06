@@ -83,9 +83,8 @@ def col1a1_ch_import_TH(im_path):
     return threshInv
 
 
-# main_dir = sys.argv[1]
-main_dir = '/home/atte/Documents/PD_images/batch8_retry/Deconvolved_ims'
-# main_dir = '/home/atte/Documents/PD_images/batch8_retry/18_rest/Deconvolved_ims'
+main_dir = sys.argv[1]
+#main_dir = '/home/atte/Documents/PD_images/batch8_retry/Deconvolved_ims'
 
 #main_dir = sys.argv[1]
 print(main_dir)

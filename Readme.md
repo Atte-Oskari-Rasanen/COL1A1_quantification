@@ -1,5 +1,6 @@
 # Quantification of COL1A1+ cells
 
+Link to the Github page: https://github.com/Atte-Oskari-Rasanen/COL1A1_quantification 
 ## Motivation
 
 An analysis workflow was built to quantify the number of COL1A1+ cells in IHC images. More specifically, the workflow has been finetuned to work with DAB-COL1A1/VectorBlue-HuNu IHC images although it can work with other stains as well. The images should be of relatively clean quality in order for the segmentation to work although basic image cleaning is also performed by the workflow.
@@ -8,32 +9,37 @@ An analysis workflow was built to quantify the number of COL1A1+ cells in IHC im
 ## Requirements
 
 ImageJ(Fiji) can be downloaded from the following website: https://imagej.net/software/fiji/downloads
-It is recommended ImageJ is installed inside the analysis folder (inside Fiji.app). On the github page
-ImageJ found inside Fiji.app is for Linux. The directory original_images does not come with Fiji but is
-the directory inside which the example data is. It is recommended to add own images inside this folder
-in a format of creating a numbered subdirectory containing the IHC images of the certain group/animal.
+It is recommended ImageJ is installed inside the analysis folder (inside Fiji.app). On the project github page
+the ImageJ version found inside Fiji.app is for Linux. The directory original_images is not part of the directories
+that come along with installed ImageJ. It is instead placed there since it makes running certain analysis steps easier.
+It is recommended to add own images inside this folder in a format of creating a numbered subdirectory containing the IHC images of the certain group/animal.
 
-The workflow script has been written on Ubuntu 20.04 and works primarily on Linux systems although Mac should suffice as well. For running the workflow on windows, for instance Windows
-Subsystem for Linux (WSL) can be used although this has not been explicitly tested.
+The workflow script has been written on Ubuntu 20.04 and works primarily on Linux systems although Mac should suffice as well. For running the workflow on windows, for instance Windows Subsystem for Linux (WSL) can be used although this has not been explicitly tested.
 
-For installing the Python packages, conda is recommended since a yml file has been readily made from which the user can install the correct package versions using the command:
+For installing the Python packages, conda is recommended since an yml file has been readily created from which the user can install the correct package versions using the command:
 
 ```
 conda env create -f conda_env_file.yml
 ```
-
+Instructions for installing conda on your system: https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html 
 
 ## Repository overview
 
-Provide an overview of the directory structure and files, for example:
-
+Quantification_COL1A1
 ├── README.md
 ├── saved_models
+│     └── trad_unet_256_64.h5
+│     │
+│     ...
+│     
 ├── Fiji.app
 │   ├── original_images
+│   │
 │   └── macros
-│       ├── 1_Deconvolution.ijm
-│        └── 4_Remove_particles_WS.ijm
+│   │    ├── 1_Deconvolution.ijm
+│   │     └── 4_Remove_particles_WS.ijm
+│   ...
+│
 └── Python_scripts
     ├── 2_File_organise_segment.py
     ├── 3_Stain_channels_postprocess.py
@@ -41,7 +47,8 @@ Provide an overview of the directory structure and files, for example:
     ├── 6_Stats_calculation.py
     ├── Models_unet_import.py
     └── smooth_tiled_divisions_edited2.py
-
+    ├──analysis_scripts
+    └──model_training
 
 
 
@@ -66,6 +73,10 @@ a matching, unique IDs which are used later for colocalisation. After the ID des
 directory is created inside original_images along with subfolders corresponding to the animal numbers.
 Inside these folders COL1A1 subfolder and HuNu subfolder are created. The corresponding images from the original folders are transferred here.
 
+In case the user wants to use the trained Residual or Attention-Residual U-net model in the workflow,
+they can be downloaded from: https://www.dropbox.com/sh/j462f1szxd7xnza/AABhETE-6CUskf9olUOVjZqpa?dl=0. The rest of the
+models are found inside ./Quantification_COL1A1/saved_models. The former models could not be saved to Github due to their size. trad_unet_256_64.h5 model is the most optimised one out of the models is thus the recommended one.
+
 ## Approach 1
 With 1_Deconvolution.ijm, the macro asks for the user to enter the input directory, which is recommended to be the directory called original_images inside Fiji.app folder as well as deconvolution option (A,B,C). A corresponds to the optimised deconvolution, B corresponds to the Hematoxylin-DAB deconvolution and
 C corresponds Hematoxylin and eosin stain deconvolution. The macro will automatically generate the COL1A1 channel image and HuNu channel images into the directory where the images were originally saved.
@@ -75,7 +86,8 @@ After this, the workflow can be run as usual using the command:
 bash ImageQuantification
 ```
 
-When the script is run on the terminal, the script asks for the path to the original_images folder, patch size along with the path to the model that will be used for segmenting the images.
+When the script is run on the terminal, the script asks for the path to the original_images folder, patch size along with the path to the model that will be used for segmenting the images. The patch size refers to the size of the pathces into which
+the imported image is cut into. This must correspond to the patch size with which the model was trained with. 
 An example output when the script is run and example input:
 ```
 1. Input directory:
@@ -148,8 +160,11 @@ python albument_augmentation.py images_path masks_path img_augmented_path msk_au
 ```
 
 ## Model training
-Models_unet_import.py contains the different U-nets that can be imported into the main file. trad_Unet.py file was used for training
-the traditional U-net originally. However, the U-net can also be imported from Models_unet_import.py like the residual and attention-residual ones.
+Models_unet_import.py contains the different U-nets that can be imported into the main file. trad_Unet.py file was used for training the traditional U-net originally. However, the U-net can also be imported from Models_unet_import.py like the residual and attention-residual ones. The files are imported into the main script (trad_Unet.py or Models_unet_import.py)
+by using import_images_masks_patches.py script. The function import_images imports images from the target directory when
+all images are found inside it and import_masks imports the masks from corresponding mask folder. However, if the user 
+decides to use the file structure found with Kaggle Datascience Bowl (DSB) 2018 data, then the user can use import_kaggledata function. All of these functions are found in import_images_masks_patches.py. In case one wants to put the DSB data into
+the format of training folder containing all images and mask folder for all masks, then the user can use kaggle_reformat.py. The script requires to import the DSB data as npy, either via using the . This can be done via import_images_masks_patches.py and afterwards save the imported numpy arrays as .npy file. In case the user wants to reformat the DSB data, this data can then be imported into kaggle_reformat.py which organised the images into allocated training and mask directories. 
 
 #singularity file
 
@@ -177,9 +192,9 @@ From: ubuntu:20.04
     # Install Python modules.
     pip3 install -I joblib wheel scipy==1.4.1 tensorflow==2.6.0 pip install keras==2.6.* focal-loss scikit-learn==0.22.1 numpy opencv-python pandas matplotlib tqdm scandir scikit-image PyOpenGL thinc
 ```
-To create the singularity image, use
+To create the singularity image from the definition file (./Quantification_COL1A1/Python_scripts/model_training/ML_train.def), use
 ```
-singularity build --remote ML_conda.sif ML_conda.def
+singularity build --remote ML_conda.sif ML_train.def
 ```
 
 The models were trained within singularity container. An example script is shown below:
@@ -210,9 +225,8 @@ singularity exec ML_conda.sif python3 ./scripts/tradUnet.py 736 64 $TMPDIR/All_d
 
 
 ## Plotting data and performing linear regression
-plot_history.py file contains steps used for performing linear regression analysis and calculating the relevant statistics and the stages used for plotting the metrics.
+plot_history.py file contains steps used for performing linear regression analysis and calculating the relevant statistics and the stages used for plotting the training metrics for each epoch. The user can make the appropriate changes based on the data.
 
 
 ## Statistics for the results
-pretests_groups.R was used for running the tests for normality and homoscedasticity for the data prior to choosing the significance test. Subsequently t_tests.R script contains the code for running t tests on samples or the non parametric alternative Wilcoxon test.
-Histograms of interest can also be plotted by entering the data of interest. Violinplots.R script contains the code used for generating the violin plots for the data. The data plotted on the script serves as an example and can be changed based on which data is plotted.
+pretests_groups.R was used for running the tests for normality, homoscedasticity and plotting the data distribution as histograms for the data prior to choosing the significance test. Subsequently t_tests.R script contains the code for running t tests on samples or the non parametric alternative Wilcoxon test. Violinplots.R script contains the code used for generating the violin plots for the data. The data plotted on the script serves as an example and can be changed based on which data is plotted.
