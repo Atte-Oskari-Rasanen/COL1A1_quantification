@@ -55,7 +55,7 @@ Quantification_COL1A1
 
 Example data is included inside Fiji.app - original_images directory.
 
-The workflow consists of python scripts (.ijm) found inside Python_scripts folder and java (.ijm)
+The workflow consists of python scripts (.py) found inside Python_scripts folder and java (.ijm)
 scripts found inside Fiji.app macros subfolder.
 
 The workflow can be run as a whole with two initial adjustments; 1. The first script, 1_Deconvolution.ijm,
