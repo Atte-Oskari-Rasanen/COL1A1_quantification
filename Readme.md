@@ -25,6 +25,7 @@ Instructions for installing conda on your system: https://docs.conda.io/projects
 
 Quantification_COL1A1
 ├── README.md
+├── conda_env_file.yml
 ├── saved_models
 │     └── trad_unet_256_64.h5
 │     │
