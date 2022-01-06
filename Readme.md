@@ -9,10 +9,8 @@ An analysis workflow was built to quantify the number of COL1A1+ cells in IHC im
 ## Requirements
 
 ImageJ(Fiji) can be downloaded from the following website: https://imagej.net/software/fiji/downloads
-It is recommended ImageJ is installed inside the analysis folder (inside Fiji.app). On the project github page
-the ImageJ version found inside Fiji.app is for Linux. The directory original_images is not part of the directories
-that come along with installed ImageJ. It is instead placed there since it makes running certain analysis steps easier.
-It is recommended to add own images inside this folder in a format of creating a numbered subdirectory containing the IHC images of the certain group/animal.
+It is recommended that ImageJ is installed inside the analysis folder (inside Fiji.app). On the project github page
+the ImageJ version found inside Fiji.app is for Linux. The directory original_images (inside Fiji.app) is not part of the directories that come along with installed ImageJ. It is instead placed there since it makes running certain analysis steps more streamlined. It is recommended to add own images inside this folder in a format of creating a numbered subdirectory containing the IHC images of the certain group/animal, as shown with the example images.
 
 The workflow script has been written on Ubuntu 20.04 and works primarily on Linux systems although Mac should suffice as well. For running the workflow on windows, for instance Windows Subsystem for Linux (WSL) can be used although this has not been explicitly tested.
 
@@ -78,15 +76,17 @@ they can be downloaded from: https://www.dropbox.com/sh/j462f1szxd7xnza/AABhETE-
 models are found inside ./Quantification_COL1A1/saved_models. The former models could not be saved to Github due to their size. trad_unet_256_64.h5 model is the most optimised one out of the models is thus the recommended one.
 
 ## Approach 1
-With 1_Deconvolution.ijm, the macro asks for the user to enter the input directory, which is recommended to be the directory called original_images inside Fiji.app folder as well as deconvolution option (A,B,C). A corresponds to the optimised deconvolution, B corresponds to the Hematoxylin-DAB deconvolution and
-C corresponds Hematoxylin and eosin stain deconvolution. The macro will automatically generate the COL1A1 channel image and HuNu channel images into the directory where the images were originally saved.
-After this, the workflow can be run as usual using the command:
+With 1_Deconvolution.ijm, the macro asks for the user to enter the input directory, which is recommended to be the directory called original_images inside Fiji.app folder as well as deconvolution option (A,B,C). A corresponds to the optimised deconvolution, B corresponds to the Hematoxylin-DAB deconvolution and C corresponds Hematoxylin and eosin stain deconvolution. The macro will automatically generate the COL1A1 channel image and HuNu channel images into the directory where the images were originally saved. After this, the workflow can be run as usual using the command:
 
 ```
 bash ImageQuantification
 ```
 
-When the script is run on the terminal, the script asks for the path to the original_images folder, patch size along with the path to the model that will be used for segmenting the images. The patch size refers to the size of the pathces into which
+Note that if you are not using Linux, you should change the step 4's ImageJ app to the one specific for your OS. Currently
+It is ./Fiji.app/ImageJ-linux64. 
+
+
+When the script is run on the terminal, the script asks for the path to the original_images folder, patch size along with the path to the model that will be used for segmenting the images. The patch size refers to the size of the patches into which
 the imported image is cut into. This must correspond to the patch size with which the model was trained with. 
 An example output when the script is run and example input:
 ```
@@ -132,7 +132,8 @@ python ./Python_scripts/2_File_organise_segment.py Input Patch_size Model_path
 python ./Python_scripts/3_Stain_channels_postprocess.py Deconvolved_ims
 ```
 
-###### Step 4 - Apply watershed to the thresholded images
+###### Step 4 - Apply watershed to the thresholded images. Change the ImageJ-linux64 to the OS being used in case
+it is not Linux.
 ```
 ./Fiji.app/ImageJ-linux64 --ij2 --headless --console --run ./Fiji.app/macros/4_Remove_particles_WS.ijm
 ```
@@ -148,13 +149,8 @@ python ./Python_scripts/6_Stats_calculation.py Deconv_dir
 ```
 
 
-## Data preparation
-Import_images_masks.py script is used for importing the images and corresponding masks. For Kaggle Datascience Bowl 2018 data, due to its
-different formatting, it can be imported with its own function  or the data can be reorganised using the script kaggle_reformat.py. kaggle_reformat.py
-takes in the kaggle data as numpy arrays (available in github page:) as well as the output directory for images and corresponding masks.
-
-
 ## For augmenting data:
+The respective locations can be entered via command line.
 ```
 python albument_augmentation.py images_path masks_path img_augmented_path msk_augmented_path
 ```
