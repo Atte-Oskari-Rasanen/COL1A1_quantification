@@ -20,6 +20,7 @@ For installing the Python packages, conda is recommended since an yml file has b
 ```
 conda env create -f conda_env_file.yml
 ```
+
 Instructions for installing conda on your system: https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html 
 
 ## Repository overview
@@ -54,7 +55,7 @@ Quantification_COL1A1
 
 ## The Workflow
 
-Example data is included inside ./Fiji.app/original_images directory.
+Example data is included inside ./Fiji.app/original_images directory. The workflow processes .tif images.
 
 The workflow consists of python scripts (.py) found inside Python_scripts folder and java (.ijm)
 scripts found inside ./Fiji.app/macros folder.
