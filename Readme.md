@@ -1,6 +1,6 @@
 # Quantification of COL1A1+ cells
 
-The code is avalaible on the Github page: https://github.com/Atte-Oskari-Rasanen/COL1A1_quantification 
+The code is available on the Github page: https://github.com/Atte-Oskari-Rasanen/COL1A1_quantification 
 
 ## Motivation
 
