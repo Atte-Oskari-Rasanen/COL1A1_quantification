@@ -9,7 +9,7 @@ An analysis workflow was built to quantify the number of COL1A1+ cells in IHC im
 
 ## Requirements
 
-ImageJ(Fiji) can be downloaded from the following website: https://imagej.net/software/fiji/downloads
+ImageJ(Fiji) can be downloaded from the following website: https://imagej.net/software/fiji/downloads.
 It is recommended that ImageJ is installed inside the analysis folder (inside Fiji.app). On the project github page
 the ImageJ version found inside Fiji.app is for Linux. The directory original_images (inside Fiji.app) is not part of the directories that come along with installed ImageJ. It is instead placed there since it makes running certain analysis steps more streamlined. It is recommended to add own images inside this folder in a format of creating a numbered subdirectory containing the IHC images of the certain group/animal, as shown with the example images.
 
@@ -61,7 +61,7 @@ scripts found inside ./Fiji.app/macros folder.
 
 The workflow can be run as a whole with two initial adjustments; 1. The first script, 1_Deconvolution.ijm,
 needs to be run separately by opening the ImageJ macro IDE (ImageJ --> Quick search -> Macro)
-and 2. The user needs to open 4_Remove_particles_WS.ijm and add the input directory to the 'input' variable manually (the full path to the Deconvolved_ims folder). Furthermore, the user needs to specify the ImageJ version if the user is not using Linux OS (currently /Fiji.app/ImageJ-linux64). Alternatively to the step 2 the user can open the  4_Remove_particles_WS.ijm on ImageJ macro IDE and enter the directory via GUI when the user has commented out 'input' and removed the '//' from the front of the line starting #@.
+and 2. The user needs to open 4_Remove_particles_WS.ijm and add the input directory to the 'input' variable manually (the full path to the Deconvolved_ims folder). Furthermore, the user needs to specify the ImageJ version if the user is not using Linux OS (currently ./Fiji.app/ImageJ-linux64). Alternatively to the step 2 the user can open the  4_Remove_particles_WS.ijm on ImageJ macro IDE and enter the directory via GUI when the user has commented out 'input' and removed the '//' from the front of the line starting #@.
 
 The reason for having to pass the arguments into the ImageJ macros by opening the scripts is due to the fact that ImageJ is not generally speaking created for running via terminal. Some processes had been deprecated with the latest version, potentially affecting the way macros are run via terminal. However, earlier versions did not contain the deconvolution algorithm needed for the analysis. Thus, the compromise was made where some manual handling is required from the user.
 
