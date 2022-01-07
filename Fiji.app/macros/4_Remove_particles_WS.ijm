@@ -12,7 +12,7 @@ input = "path to Deconvolved_ims directory here";
 //#@ File (label = "Input directory", style = "directory") input
 
 
-size = "300-8500";
+size = "200-8500";
 suffix = "Segm_TH.png";
 
 // function to scan folders/subfolders/files to find files with correct suffix
