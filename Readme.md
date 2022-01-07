@@ -1,6 +1,7 @@
 # Quantification of COL1A1+ cells
 
-Link to the Github page: https://github.com/Atte-Oskari-Rasanen/COL1A1_quantification 
+The code is avalaible on the Github page: https://github.com/Atte-Oskari-Rasanen/COL1A1_quantification 
+
 ## Motivation
 
 An analysis workflow was built to quantify the number of COL1A1+ cells in IHC images. More specifically, the workflow has been finetuned to work with COL1A1-VectorBlue/HuNu-DAB IHC images although it can work with other stains as well. The images should be of relatively clean quality in order for the segmentation to work although basic image cleaning is also performed by the workflow.
@@ -36,7 +37,7 @@ Quantification_COL1A1
 │   │
 │   └── macros
 │   │    ├── 1_Deconvolution.ijm
-│   │     └── 4_Remove_particles_WS.ijm
+│   │    └── 4_Remove_particles_WS.ijm
 │   ...
 │
 └── Python_scripts
@@ -53,10 +54,10 @@ Quantification_COL1A1
 
 ## The Workflow
 
-Example data is included inside Fiji.app - original_images directory.
+Example data is included inside ./Fiji.app/original_images directory.
 
 The workflow consists of python scripts (.py) found inside Python_scripts folder and java (.ijm)
-scripts found inside Fiji.app macros subfolder.
+scripts found inside ./Fiji.app/macros folder.
 
 The workflow can be run as a whole with two initial adjustments; 1. The first script, 1_Deconvolution.ijm,
 needs to be run separately by opening the ImageJ macro IDE (ImageJ --> Quick search -> Macro)
