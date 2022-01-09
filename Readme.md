@@ -47,6 +47,7 @@ Package versions:
 Quantification_COL1A1
 ├── README.md
 ├── conda_env_file.yml
+├── workflow_conda_macOS.yml
 ├── saved_models
 │     └── trad_unet_256_64.h5
 │     │
