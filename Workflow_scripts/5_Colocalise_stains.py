@@ -17,7 +17,6 @@ from skimage.feature import peak_local_max
 from skimage.morphology import watershed
 from scipy import ndimage as ndi
 import os
-from skimage.segmentation import watershed
 from skimage.feature import peak_local_max
 
 import sys
