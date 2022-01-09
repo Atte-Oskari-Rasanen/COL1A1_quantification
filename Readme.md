@@ -18,6 +18,8 @@ For installing the Python packages, conda is recommended since an yml file has b
 ```
 conda env create -f workflow_conda_linux.yml
 ```
+Alternatively the user can use the mac version: workflow_conda_macOS.yml
+
 The created conda environment is called workflow_env.
 
 
