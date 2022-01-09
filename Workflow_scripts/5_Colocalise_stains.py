@@ -14,7 +14,6 @@ from PIL import Image, ImageFilter
 from skimage import measure, filters
 import scandir
 from skimage.feature import peak_local_max
-from skimage.morphology import watershed
 from scipy import ndimage as ndi
 import os
 from skimage.feature import peak_local_max
