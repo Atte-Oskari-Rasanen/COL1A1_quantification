@@ -9,21 +9,33 @@ An analysis workflow was built to quantify the number of COL1A1+ cells in IHC im
 
 ## Requirements
 
-ImageJ(Fiji) can be downloaded from the following website: https://imagej.net/software/fiji/downloads.
-It is recommended that ImageJ is installed inside the analysis folder (inside Fiji.app). On the project github page
-the ImageJ version found inside Fiji.app is for Linux. The directory original_images (inside Fiji.app) is not part of the directories that come along with installed ImageJ. It is instead placed there since it makes running certain analysis steps more streamlined. It is recommended to add own images inside this folder in a format of creating a numbered subdirectory containing the IHC images of the certain group/animal, as shown with the example images.
+ImageJ(Fiji) can be downloaded from the following website: https://imagej.net/software/fiji/downloads. The version used on Linux for the analysis workflow is ImageJ 1.53f51. It is recommended that ImageJ is installed inside the analysis folder (inside Fiji.app). On the project github page the ImageJ version found inside Fiji.app is for Linux. The directory original_images (inside Fiji.app) is not part of the directories that come along with installed ImageJ. It is instead placed there since it makes running certain analysis steps more streamlined. It is recommended to add own images inside this folder in a format of creating a numbered subdirectory containing the IHC images of the certain group/animal, as shown with the example images.
 
 The workflow script has been written on Ubuntu 20.04 and works primarily on Linux systems although Mac should suffice as well. For running the workflow on windows, for instance Windows Subsystem for Linux (WSL) can be used although this has not been explicitly tested.
 
 For installing the Python packages, conda is recommended since an yml file has been readily created from which the user can install the correct package versions using the command:
 
 ```
-conda env create -f conda_env_file.yml
+conda env create -f workflow_conda.yml
 ```
 The created conda environment is called workflow_env.
 
 
 Instructions for installing conda on your system: https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html 
+The packages can also be installed manually:
+Package versions:
+  - python=3.9.7
+  - opencv-python=4.5.2
+  - numpy=1.19.5
+  - matplotlib=3.4.3
+  - keras=2.6.0
+  - scikit-image=0.18.3
+  - scikit-learn=1.0
+  - scipy=1.7.1
+  - tensorflow=2.6.0
+  - tensorflow-base=2.6.0
+  - pillow==7.2.0
+  - tqdm=4.62.3
 
 ## Repository overview
 
@@ -79,12 +91,11 @@ are calculated`.
 
 In case the user wants to use the trained Residual or Attention-Residual U-net model in the workflow,
 they can be downloaded from: https://www.dropbox.com/sh/j462f1szxd7xnza/AABhETE-6CUskf9olUOVjZqpa?dl=0. The rest of the
-models are found inside ./Quantification_COL1A1/saved_models. The former models could not be saved to Github due to their size. trad_unet_256_64.h5 model is the most optimised one out of the models and is thus the recommended one. The model is not
-as efficient at identifying smaller or clumped nuclei as the trad_unet_own_data_256_32.h5. However, this one has the issue
+models are found inside ./Quantification_COL1A1/saved_models. The former models could not be saved to Github due to their size. trad_unet_256_64.h5 model is the most optimised one out of the models and is thus the recommended one. 256 corresponds to the image patch size with which the model was trained with and 64 the batch size. The model is not as efficient at identifying smaller or clumped nuclei as the trad_unet_own_data_256_32.h5. However, this one has the issue
 of capturing more background noise, which may not always be removed after postprocessing steps.
 
 ## Approach 1
-With 1_Deconvolution.ijm, the macro asks for the user to enter the input directory, which is recommended to be the directory called original_images inside Fiji.app folder as well as deconvolution option (A,B). A corresponds to the optimised deconvolution and B corresponds to the Hematoxylin-DAB deconvolution with automatic, unoptimised values. The macro will automatically generate the COL1A1 channel image and HuNu channel images into the directory where the images were originally saved. After this, the workflow can be run as usual using the command:
+With 1_Deconvolution.ijm, the macro asks for the user to enter the input directory, which is recommended to be the directory called original_images as well as deconvolution option (A,B). A corresponds to the optimised deconvolution and B corresponds to the Hematoxylin-DAB deconvolution with automatic, unoptimised values. The macro will automatically generate the COL1A1 channel image and HuNu channel images into the directory where the images were originally saved. After this, the workflow can be run as usual using the command:
 
 ```
 bash ImageQuantification.sh
@@ -98,12 +109,12 @@ When the script is run on the terminal, the script asks for the path to the orig
 the imported image is cut into. This must correspond to the patch size with which the model was trained with. 
 An example output when the script is run and example input:
 ```
-1. Input directory:
-./Fiji.app/original_images
-2. Patch size:
+1. Input directory: 
+./original_images
+2. Patch size: 
 256
-3. Model path:
-./saved_models/trad_unet_256_64.h5  
+3. Model path: 
+./saved_models/trad_unet_256_64.h5
 ```
 
 ## Approach 2
