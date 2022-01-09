@@ -23,7 +23,7 @@ function deconv(deconv_option){
    	run("Median...", "radius=2");
 	//run("Enhance Contrast...", "saturated=0.3 normalize equalize");
     run("Enhance Local Contrast (CLAHE)", "blocksize=127 histogram=256 maximum=3 mask=*None*");
-   	saveAs("PNG",INPUT+ File.separator+replace(title,suffix,"_col1a1.png"));
+   	saveAs("PNG",INPUT+ File.separator+replace(title,suffix,"_hunu.png"));
 	close(title + "-(Colour_3)");
 	close(path);
 	path = INPUT + File.separator +file;
@@ -36,7 +36,7 @@ function deconv(deconv_option){
 
 	run("Enhance Local Contrast (CLAHE)", "blocksize=127 histogram=256 maximum=3 mask=*None*");
     
-    saveAs("PNG",INPUT+ File.separator+replace(title,suffix,"_hunu.png"));
+    saveAs("PNG",INPUT+ File.separator+replace(title,suffix,"_col1a1.png"));
     close(title + "-(Colour_1)");
     close(path);
 	}
