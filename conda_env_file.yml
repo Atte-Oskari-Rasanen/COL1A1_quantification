@@ -1,4 +1,4 @@
-name: new_tf
+name: workflow_env
 channels:
   - anaconda
   - bioconda
