@@ -5,10 +5,10 @@ set -o pipefail #if a subscript stops due to an error, the workflow won't be ter
 echo "Enter the location to the Deconvolved_ims directory:"
 read Input
 
-python ./Python_scripts/5_Colocalise_stains.py $Input
+python ./Workflow_scripts/5_Colocalise_stains.py $Input
 
 #Record the statistics
-python ./Python_scripts/6_Stats_calculation.py $Input
+python ./Workflow_scripts/6_Stats_calculation.py $Input
 
 
 echo "Calculations done!"

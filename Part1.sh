@@ -27,7 +27,7 @@ Deconv_dir="${Input}/Deconvolved_ims"
 
 #Reorganise files and segment using python
 
-python ./Python_scripts/2_File_organise_segment.py $Input $Patch_size $Model_path
+python ./Workflow_scripts/2_File_organise_segment.py $Input $Patch_size $Model_path
 
 echo "Files organised and segmented"
 
@@ -35,4 +35,4 @@ echo "Files organised and segmented"
 Deconv_dir="${Input}/Deconvolved_ims"
 echo "Deconv directory: $Deconv_dir"
 
-python ./Python_scripts/3_Stain_channels_postprocess.py $Deconv_dir
+python ./Workflow_scripts/3_Stain_channels_postprocess.py $Deconv_dir

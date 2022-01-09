@@ -43,9 +43,11 @@ Quantification_COL1A1
 │   │    └── 4_Remove_particles_WS.ijm
 │   ...
 │
-└── Python_scripts
+└── Workflow_scripts
+    ├── 1_Deconvolution.ijm
     ├── 2_File_organise_segment.py
     ├── 3_Stain_channels_postprocess.py
+    ├── 4_Remove_particles_WS.ijm
     ├── 5_Colocalise_stains.py
     ├── 6_Stats_calculation.py
     ├── Models_unet_import.py
@@ -57,10 +59,9 @@ Quantification_COL1A1
 
 ## The Workflow
 
-Example data is included inside ./Fiji.app/original_images directory. The workflow processes .tif images.
+Example data is included inside ./original_images directory. The workflow processes .tif images.
 
-The workflow consists of python scripts (.py) found inside Python_scripts folder and java (.ijm)
-scripts found inside ./Fiji.app/macros folder.
+The workflow consists of python scripts (.py) and java (.ijm) scripts found inside ./Workflow_scripts folder.
 
 The workflow can be run as a whole with two initial adjustments; 1. The first script, 1_Deconvolution.ijm,
 needs to be run separately by opening the ImageJ macro IDE (ImageJ -> Quick search -> Macro)
@@ -72,8 +73,8 @@ Inside the original_images directory each animal is inside their own subfolders 
 When 2_File_organise_segment.py is run, each HuNu channel and COL1A1 channel image is designated
 a matching, unique IDs which are used later for colocalisation. After the ID designation, Deconvolved_ims
 directory is created inside original_images along with subfolders corresponding to the animal numbers.
-Inside these folders COL1A1 subfolder and HuNu subfolder are created. The corresponding images from the original folders are transferred here. HuNu channel images are subsequently segmented, thresholded and watershedded and the COL1A1 channel images
-are thresholded. The HuNu channel's cells are subsequently colocalised with the COL1A1 channel and the relevant statistics 
+Inside these folders COL1A1 subfolder and HuNu subfolders are created. The corresponding images from the original folders are transferred here. HuNu channel images are subsequently segmented, thresholded and watershedded and the COL1A1 channel images
+are thresholded. The HuNu channel's cells are colocalised with the COL1A1 channel and the relevant statistics 
 are calculated`.
 
 In case the user wants to use the trained Residual or Attention-Residual U-net model in the workflow,
