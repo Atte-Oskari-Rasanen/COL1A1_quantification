@@ -4,7 +4,7 @@ The code is available on the Github page: https://github.com/Atte-Oskari-Rasanen
 
 ## Motivation
 
-An analysis workflow was built to quantify the number of COL1A1+ cells in IHC images. More specifically, the workflow has been fine-tuned to work specifically with COL1A1-VectorBlue/HuNu-DAB IHC images although it can work with other stains as well as long as the deconvolution settings are adjusted correctly. The current workflow only has 3 deconvolution options although more can be added via manually modifying code and adding options from the deconvolution plugin's options. The images should be of relatively clean quality in order for the segmentation to work although basic image cleaning is also performed by the workflow.
+An analysis workflow was built to quantify the number of COL1A1+ cells in IHC images. Moreover, the workflow has been fine-tuned to work specifically with COL1A1-VectorBlue/HuNu-DAB IHC images although it can work with other stains as well as long as the deconvolution settings are adjusted correctly. The current workflow only has 3 deconvolution options although more can be added via manually modifying code and adding options from the deconvolution plugin's options. The images should be of relatively clean quality in order for the segmentation to work although basic image cleaning is also performed by the workflow.
 
 
 ## Requirements
