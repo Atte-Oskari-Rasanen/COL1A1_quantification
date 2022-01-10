@@ -53,7 +53,7 @@ def colocalise(hunu_im, col1a1_im):
     print('colocalised image created!')
 
 main_dir = sys.argv[1]
-# main_dir = "/home/atte/Documents/GitHub/analysis_folder/Fiji.app/original_images/Deconvolved_ims"
+# main_dir = "/home/atte/Documents/GitHub/Quantification_COL1A1/original_images/Deconvolved_ims"
 coloc_dir = main_dir + '/Coloc'
 
 try:
@@ -72,7 +72,7 @@ for (dirpath, dirnames, filenames) in os.walk(main_dir):
 file_pairs = {} #key: hunu_ws_th file, value: col1a1_th
 for f in all_ims_paths:
     filename = os.path.basename(f)
-    if 'WS' in filename:
+    if 'WS' in filename and not 'Coloc' in filename:
         for f2 in all_ims_paths:
             filename2 = os.path.basename(f2)
             if 'col1a1' in filename2 and 'TH' in filename2 and filename[:18] in filename2:
