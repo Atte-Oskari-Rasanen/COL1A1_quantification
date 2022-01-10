@@ -148,12 +148,12 @@ Each step (except step 1) can be run separately from the command line by passing
 ###### Step 2 - Reorganise files and segment
 
 ```
-python ./Python_scripts/2_File_organise_segment.py Input Patch_size Model_path
+python ./Workflow_scripts/2_File_organise_segment.py Input Patch_size Model_path
 ```
 
 ###### Step 3 - Postprocess the segmented images
 ```
-python ./Python_scripts/3_Stain_channels_postprocess.py Deconvolved_ims
+python ./Workflow_scripts/3_Stain_channels_postprocess.py ./original_images/Deconvolved_ims
 ```
 
 ###### Step 4 - Apply watershed to the thresholded images
@@ -164,12 +164,12 @@ Change the ImageJ-linux64 to the OS being used in case it is not Linux.
 
 ###### Step 5 - Colocalise the COL1A1 channel image with HuNu channel image, producing an image with COL1A1+ cells
 ```
-python ./Python_scripts/5_Colocalise_stains.py Deconv_dir
+python ./Workflow_scripts/5_Colocalise_stains.py ./original_images/Deconvolved_ims
 ```
 
 ###### Step 6 - Calculate the relevant statistics
 ```
-python ./Python_scripts/6_Stats_calculation.py Deconv_dir
+python ./Workflow_scripts/6_Stats_calculation.py ./original_images/Deconvolved_ims
 ```
 
 
