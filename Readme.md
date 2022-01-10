@@ -93,7 +93,7 @@ a matching, unique IDs which are used later for colocalisation. After the ID des
 directory is created inside original_images along with subfolders corresponding to the animal numbers.
 Inside these folders COL1A1 subfolder and HuNu subfolders are created. The corresponding images from the original folders are transferred here. HuNu channel images are subsequently segmented, thresholded and watershedded and the COL1A1 channel images
 are thresholded. The HuNu channel's cells are colocalised with the COL1A1 channel and the relevant statistics 
-are calculated`.
+are calculated`. The Results.csv is found inside Deconvolved_ims.
 
 In case the user wants to use the trained Residual or Attention-Residual U-net model in the workflow,
 they can be downloaded from: https://www.dropbox.com/sh/j462f1szxd7xnza/AABhETE-6CUskf9olUOVjZqpa?dl=0. The rest of the
