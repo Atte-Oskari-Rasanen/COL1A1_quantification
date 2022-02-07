@@ -4,7 +4,7 @@ The code is available on the Github page: https://github.com/Atte-Oskari-Rasanen
 
 ## Motivation
 
-An analysis workflow was built to quantify the number of COL1A1+ cells in IHC images. Moreover, the workflow has been fine-tuned to work specifically with COL1A1-VectorBlue/HuNu-DAB IHC images although it can work with other stains as well as long as the deconvolution settings are adjusted correctly. The current workflow only has 2 deconvolution options although more can be added via manually modifying code and adding options from the deconvolution plugin's options. The images should be of relatively clean quality in order for the segmentation to work although basic image cleaning is also performed by the workflow.
+An analysis workflow was built to quantify the number of COL1A1+ cells in IHC images. Moreover, the workflow has been fine-tuned to work specifically with COL1A1-VectorBlue/HuNu-DAB IHC images although it can work with other stains as well as long as the deconvolution settings are adjusted correctly. The current workflow has 5 deconvolution options although more can be added via manually modifying code and adding options from the deconvolution plugin's options. The images should be of relatively clean quality in order for the segmentation to work although basic image cleaning is also performed by the workflow.
 
 
 ## Requirements
@@ -100,7 +100,7 @@ they can be downloaded from: https://www.dropbox.com/sh/j462f1szxd7xnza/AABhETE-
 models are found inside ./Quantification_COL1A1/saved_models. The former models could not be saved to Github due to their size. trad_unet_256_64.h5 model is the most optimised one out of the models and is thus the recommended one. It has been trained with both DAB-VB data and kaggle DSB 2018 data. 256 corresponds to the image patch size with which the model was trained with and 64 the batch size. The model is not as efficient at identifying smaller or clumped nuclei as the trad_unet_own_data_256_32.h5. However, this one has the issue of capturing more background noise, which may not always be removed after postprocessing steps. trad_unet_own_data_256_32.h5 has only been trained with DAB-VB data
 
 ## Approach 1
-With 1_Deconvolution.ijm, the macro asks for the user to enter the input directory, which is recommended to be the directory called original_images as well as deconvolution option (A,B). A corresponds to the optimised deconvolution and B corresponds to the Hematoxylin-DAB deconvolution with automatic, unoptimised values. The macro will automatically generate the COL1A1 channel image and HuNu channel images into the directory where the images were originally saved. After this, the workflow can be run as usual using the command:
+With 1_Deconvolution.ijm, the macro asks for the user to enter the input directory, which is recommended to be the directory called original_images as well as deconvolution option (A,B, C, D, E). A corresponds to the optimised deconvolution and B corresponds to the Hematoxylin-DAB deconvolution with automatic, unoptimised values. C is the option 1 for deconvolving Vector red from vector blue and D is the option 2. E is for deconvolving COL1A1-VB with HuNu-immPACT VIP. The macro will automatically generate the COL1A1 channel image and HuNu channel images into the directory where the images were originally saved. After this, the workflow can be run as usual using the command:
 
 ```
 bash ImageQuantification.sh

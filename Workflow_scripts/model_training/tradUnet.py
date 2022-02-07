@@ -190,6 +190,8 @@ s = tf.keras.layers.Lambda(lambda x: x / 255.)(inputs)
 c1 = tf.keras.layers.Conv2D(16, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(s)
 c1 = tf.keras.layers.Dropout(0.0)(c1)
 c1 = tf.keras.layers.Conv2D(16, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(c1)
+batch1 = BatchNormalization(axis=3)(conv1)
+
 p1 = tf.keras.layers.MaxPooling2D((2, 2))(c1)
 
 c2 = tf.keras.layers.Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(p1)

@@ -43,34 +43,122 @@ function deconv(deconv_option){
 	if(deconv_option=="B"){
 		run("Colour Deconvolution", "vectors=[H DAB]");
 		print("Processing: " + INPUT + File.separator + file);
-	print("Saving to: " + INPUT);
-
-
-	//Save the channels
-   	selectWindow(title + "-(Colour_2)");
-   	run("Median...", "radius=2");
-	//run("Enhance Contrast...", "saturated=0.3 normalize equalize");
-    run("Enhance Local Contrast (CLAHE)", "blocksize=127 histogram=256 maximum=3 mask=*None*");
-   	saveAs("PNG",INPUT+ File.separator+replace(title,suffix,"_hunu.png"));
-	close(title + "-(Colour_3)");
-	close(path);
-	path = INPUT + File.separator +file;
-	open(path);
-    title=getTitle();
-
-
-    selectWindow(title + "-(Colour_1)");
-    run("Median...", "radius=2");
-
-	run("Enhance Local Contrast (CLAHE)", "blocksize=127 histogram=256 maximum=3 mask=*None*");
-    
-    saveAs("PNG",INPUT+ File.separator+replace(title,suffix,"_col1a1.png"));
-    close(title + "-(Colour_1)");
-    close(path);
+		print("Saving to: " + INPUT);
+	
+	
+		//Save the channels
+	   	selectWindow(title + "-(Colour_2)");
+	   	run("Median...", "radius=2");
+		//run("Enhance Contrast...", "saturated=0.3 normalize equalize");
+	    run("Enhance Local Contrast (CLAHE)", "blocksize=127 histogram=256 maximum=3 mask=*None*");
+	   	saveAs("PNG",INPUT+ File.separator+replace(title,suffix,"_hunu.png"));
+		close(title + "-(Colour_3)");
+		close(path);
+		path = INPUT + File.separator +file;
+		open(path);
+	    title=getTitle();
+	
+	
+	    selectWindow(title + "-(Colour_1)");
+	    run("Median...", "radius=2");
+	
+		run("Enhance Local Contrast (CLAHE)", "blocksize=127 histogram=256 maximum=3 mask=*None*");
+	    
+	    saveAs("PNG",INPUT+ File.separator+replace(title,suffix,"_col1a1.png"));
+	    close(title + "-(Colour_1)");
+	    close(path);
 	}
+	if(deconv_option=="C"){ //Vector red-Vector blue deconv ver 1
+		run("Colour Deconvolution", "vectors=Brilliant_Blue");
+		print("Processing: " + INPUT + File.separator + file);
+		print("Saving to: " + INPUT);
+	
+	
+		//Save the channels
+	   	selectWindow(title + "-(Colour_3)");
+	   	run("Median...", "radius=2");
+		//run("Enhance Contrast...", "saturated=0.3 normalize equalize");
+	    run("Enhance Local Contrast (CLAHE)", "blocksize=127 histogram=256 maximum=3 mask=*None*");
+	   	saveAs("PNG",INPUT+ File.separator+replace(title,suffix,"_hunu.png"));
+		close(title + "-(Colour_3)");
+		close(path);
+		path = INPUT + File.separator +file;
+		open(path);
+	    title=getTitle();
+	
+	
+	    selectWindow(title + "-(Colour_1)");
+	    run("Median...", "radius=2");
+	
+		run("Enhance Local Contrast (CLAHE)", "blocksize=127 histogram=256 maximum=3 mask=*None*");
+	    
+	    saveAs("PNG",INPUT+ File.separator+replace(title,suffix,"_col1a1.png"));
+	    close(title + "-(Colour_1)");
+	    close(path);
+	
 
 }
+	if(deconv_option=="D"){  //Vector red-Vector blue deconv ver 2
+		run("Colour Deconvolution", "vectors=[FastRed FastBlue DAB]");
+		print("Processing: " + INPUT + File.separator + file);
+		print("Saving to: " + INPUT);
+	
+	
+		//Save the channels
+	   	selectWindow(title + "-(Colour_3)");
+	   	run("Median...", "radius=2");
+		//run("Enhance Contrast...", "saturated=0.3 normalize equalize");
+	    run("Enhance Local Contrast (CLAHE)", "blocksize=127 histogram=256 maximum=3 mask=*None*");
+	   	saveAs("PNG",INPUT+ File.separator+replace(title,suffix,"_hunu.png"));
+		close(title + "-(Colour_3)");
+		close(path);
+		path = INPUT + File.separator +file;
+		open(path);
+	    title=getTitle();
+	
+	
+	    selectWindow(title + "-(Colour_1)");
+	    run("Median...", "radius=2");
+	
+		run("Enhance Local Contrast (CLAHE)", "blocksize=127 histogram=256 maximum=3 mask=*None*");
+	    
+	    saveAs("PNG",INPUT+ File.separator+replace(title,suffix,"_col1a1.png"));
+	    close(title + "-(Colour_1)");
+	    close(path);
+	
 
+	}
+	if(deconv_option=="E"){  //periwinkle stain devoncolution
+		run("Colour Deconvolution", "vectors=Giemsa");
+		print("Processing: " + INPUT + File.separator + file);
+		print("Saving to: " + INPUT);
+	
+	
+		//Save the channels
+	   	selectWindow(title + "-(Colour_3)");
+	   	run("Median...", "radius=2");
+		//run("Enhance Contrast...", "saturated=0.3 normalize equalize");
+	    run("Enhance Local Contrast (CLAHE)", "blocksize=127 histogram=256 maximum=3 mask=*None*");
+	   	saveAs("PNG",INPUT+ File.separator+replace(title,suffix,"_hunu.png"));
+		close(title + "-(Colour_3)");
+		close(path);
+		path = INPUT + File.separator +file;
+		open(path);
+	    title=getTitle();
+	
+	
+	    selectWindow(title + "-(Colour_1)");
+	    run("Median...", "radius=2");
+	
+		run("Enhance Local Contrast (CLAHE)", "blocksize=127 histogram=256 maximum=3 mask=*None*");
+	    
+	    saveAs("PNG",INPUT+ File.separator+replace(title,suffix,"_col1a1.png"));
+	    close(title + "-(Colour_1)");
+	    close(path);
+
+
+}
+}
 // function to scan folders/subfolders/files to find files with correct suffix
 function processFolder(INPUT) {
 	list = getFileList(INPUT);

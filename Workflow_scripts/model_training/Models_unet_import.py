@@ -7,12 +7,14 @@ Created on Tue Nov 16 00:46:01 2021
 """
 
 """
+@author: atte
+Code adapted from https://github.com/bnsreenu/python_for_microscopists
+
 Attention U-net:
 https://arxiv.org/pdf/1804.03999.pdf
 Recurrent residual Unet (R2U-Net) paper
 https://arxiv.org/ftp/arxiv/papers/1802/1802.06955.pdf
 (Check fig 4.)
-
 Original code from below link but heavily modified.
 https://github.com/MoleImg/Attention_UNet/blob/master/AttResUNet.py
 
@@ -56,10 +58,6 @@ def dice_coef_loss(y_true, y_pred):
 
 
 ##############################################################
-'''
-Useful blocks to build Unet
-conv - BN - Activation - conv - BN - Activation - Dropout (if enabled)
-'''
 
 
 def conv_block(x, filter_size, size, dropout, batch_norm=False):
